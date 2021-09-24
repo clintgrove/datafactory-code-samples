@@ -1,0 +1,3 @@
+/*A way to set a SQL statement with dynamic content usually inside the pre-copy script in the sink section*/
+
+TRUNCATE TABLE @{pipeline().parameters.feed_schema}.@{pipeline().parameters.feed_table}
