@@ -1,0 +1,28 @@
+{
+  "reportRequests": [
+    {
+      "viewId": "@{pipeline().parameters.myViewID}",
+      "dateRanges": [
+        {"startDate": "@{variables('startDate')}", "endDate": "@{variables('endDate')}"}
+      ],
+
+      "dimensions": [
+        {"name": "ga:date"},
+        {"name": "ga:eventAction"},
+		{"name": "ga:eventCategory"},
+		{"name": "ga:eventLabel"}
+
+      ],
+	  "metrics": [
+		{"expression": "ga:totalEvents"},
+                {"expression": "ga:uniqueEvents"},
+                {"expression": "ga:sessionsWithEvent"},
+                {"expression": "ga:eventsPerSessionWithEvent"}
+
+      ],	  
+      "filtersExpression": "ga:eventAction==BIteam - track project tiles",
+      "pageSize": 5000
+      @{if(equals(variables('NextPageToken'),'-1'),'',concat(',"pageToken":"',variables('NextPageToken'),'"'))}
+    }
+  ]
+}
